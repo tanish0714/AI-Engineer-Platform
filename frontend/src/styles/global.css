@@ -12,22 +12,48 @@ html{
 }
 
 body{
-    font-family: "Inter", sans-serif;
-    background: var(--color-background);
-    color: var(--color-text-primary);
+    font-family:"Inter",sans-serif;
+    background:#09090B;
+    color:#FAFAFA;
     overflow-x:hidden;
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at top left,#2563EB22,transparent 30%),
+
+    radial-gradient(circle at bottom right,#06B6D422,transparent 30%),
+
+    radial-gradient(circle at center,#ffffff05,transparent 60%);
+
+    z-index:-2;
+
 }
 
-button{
-    cursor:pointer;
-}
+body::after{
 
-img{
-    max-width:100%;
-    display:block;
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:
+
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+
+    background-size:40px 40px;
+
+    z-index:-1;
+
 }

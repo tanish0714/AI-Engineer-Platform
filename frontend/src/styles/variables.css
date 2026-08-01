@@ -1,30 +1,25 @@
-:root {
-  /* Primary Colors */
-  --color-primary: #6366f1;
-  --color-primary-hover: #4f46e5;
+:root{
 
-  /* Backgrounds */
-  --color-background: #030712;
-  --color-surface: #111827;
-  --color-card: #1f2937;
+--primary:#2563EB;
 
-  /* Text */
-  --color-text-primary: #f9fafb;
-  --color-text-secondary: #94a3b8;
+--primaryHover:#1D4ED8;
 
-  /* Status */
-  --color-success: #22c55e;
-  --color-danger: #ef4444;
-  --color-warning: #f59e0b;
+--accent:#06B6D4;
 
-  /* Border */
-  --color-border: rgba(255,255,255,0.08);
+--background:#09090B;
 
-  /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
+--surface:#18181B;
 
-  /* Transition */
-  --transition: all 0.25s ease;
+--text:#FAFAFA;
+
+--muted:#A1A1AA;
+
+--border:rgba(255,255,255,.08);
+
+--success:#22C55E;
+
+--danger:#EF4444;
+
+--radius:20px;
+
 }
