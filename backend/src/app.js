@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import rateLimit from "express-rate-limit";
 import errorHandler from "./middleware/error.middleware.js";
 import authRoutes from "./routes/auth.routes.js";
-
+import projectRoutes from "./routes/project.routes.js";
 const app = express();
 
 /* -------------------- Security -------------------- */
@@ -38,8 +38,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/auth", authRoutes);
 
-
+app.use("/api/v1/projects", projectRoutes);
 
 /* -------------------- Health Check -------------------- */
 
