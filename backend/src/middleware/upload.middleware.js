@@ -1,33 +1,44 @@
 import multer from "multer";
-import ApiError from "../utils/ApiError.js";
+import path from "path";
+import fs from "fs";
 
-const storage = multer.memoryStorage();
+const uploadPath = "uploads";
 
-const fileFilter = (req, file, cb) => {
-  const allowedMimeTypes = [
-    "application/pdf",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    "text/plain",
-    "text/markdown",
-  ];
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath, { recursive: true });
+}
 
-  if (allowedMimeTypes.includes(file.mimetype)) {
-    cb(null, true);
-  } else {
-    cb(new ApiError(400, "Only PDF, DOCX, TXT and Markdown files are allowed"), false);
-  }
-};
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadPath);
+  },
 
-const upload = multer({
-  storage,
+  filename: (req, file, cb) => {
+    const uniqueName =
+      Date.now() + "-" + file.originalname.replace(/\s+/g, "_");
 
-  fileFilter,
-
-  limits: {
-    fileSize: 20 * 1024 * 1024, // 20 MB
+    cb(null, uniqueName);
   },
 });
 
-export const uploadSingle = upload.single("document");
+const fileFilter = (req, file, cb) => {
+  const allowed = [
+    "application/pdf",
+    "text/plain",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ];
 
-export default upload;
+  if (allowed.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new Error("Only PDF, DOCX and TXT files are allowed"));
+  }
+};
+
+export const uploadSingle = multer({
+  storage,
+  fileFilter,
+  limits: {
+    fileSize: 20 * 1024 * 1024,
+  },
+}).single("document");

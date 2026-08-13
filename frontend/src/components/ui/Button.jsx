@@ -1,40 +1,28 @@
 const Button = ({
-  children,
-  type = "button",
-  variant = "primary",
-  fullWidth = false,
-  disabled = false,
-  onClick,
+    children,
+    className = "",
+    ...props
 }) => {
-  const baseStyle =
-    "rounded-xl px-5 py-3 font-semibold transition-all duration-300";
-
-  const variants = {
-    primary:
-      "bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg hover:shadow-indigo-500/30",
-
-    secondary:
-      "bg-slate-700 hover:bg-slate-600 text-white",
-
-    outline:
-      "border border-slate-600 hover:border-indigo-500 text-white",
-  };
-
-  return (
-    <button
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
-      className={`
-        ${baseStyle}
-        ${variants[variant]}
-        ${fullWidth ? "w-full" : ""}
-        ${disabled ? "opacity-50 cursor-not-allowed" : ""}
-      `}
-    >
-      {children}
-    </button>
-  );
+    return (
+        <button
+            {...props}
+            className={`
+            px-5
+            py-3
+            rounded-2xl
+            bg-blue-600
+            hover:bg-blue-500
+            active:scale-95
+            transition-all
+            duration-300
+            font-medium
+            text-white
+            ${className}
+        `}
+        >
+            {children}
+        </button>
+    );
 };
 
 export default Button;

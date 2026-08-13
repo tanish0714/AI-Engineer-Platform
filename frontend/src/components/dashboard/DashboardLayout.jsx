@@ -1,28 +1,35 @@
+import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = () => {
   return (
-    <div className="min-h-screen bg-[#09090B] text-white">
+    <div className="flex min-h-screen bg-transparent">
 
-      <div className="flex">
+      {/* Sidebar */}
+      <Sidebar />
 
-        {/* Sidebar */}
+      {/* Main */}
+      <div className="flex min-h-screen min-w-0 flex-1 flex-col">
 
-        <Sidebar />
+        <Topbar />
 
-        {/* Main */}
-
-        <main className="flex min-h-screen flex-1 flex-col">
-
-          <Topbar />
-
-          <div className="flex-1 bg-[#09090B] p-8">
-
-            {children}
-
+        <main className="min-w-0 flex-1 overflow-y-auto">
+          <div
+            className="
+              mx-auto
+              w-full
+              max-w-[1800px]
+              px-6
+              py-8
+              sm:px-8
+              lg:px-10
+              xl:px-12
+              2xl:px-16
+            "
+          >
+            <Outlet />
           </div>
-
         </main>
 
       </div>
